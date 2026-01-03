@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "projects/project_1767437007834",
+			"group": "clean",
+			"problemMatcher": [],
+			"label": "npm: install - projects/project_1767437007834",
+			"detail": "install dependencies from package"
+		}
+	]
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Minecraft Server Manager</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .auth-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .auth-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .auth-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .auth-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .auth-submit:hover {
+            background-color: #219653;
+        }
+        
+        .auth-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .auth-link:hover {
+            text-decoration: underline;
+        }
+        
+        #errorMessage {
+            display: none;
+            color: var(--danger-color);
+            background-color: #fdecea;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <img src="../assets/minecraft-icon.png" alt="Minecraft" class="title-icon">
+                    Minecraft Server Manager
+                </h1>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="auth-container">
+                <h1 class="auth-title">Create Account</h1>
+                <div id="errorMessage"></div>
+                <form class="auth-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required minlength="4">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required minlength="6">
+                    </div>
+                    <button type="submit" class="auth-submit">Sign Up</button>
+                    <a href="login.html" class="auth-link">Already have an account? Login</a>
+                </form>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Minecraft Server Manager &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>

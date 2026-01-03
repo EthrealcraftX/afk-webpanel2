@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Minecraft Server</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="create.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <img src="assets/minecraft-icon.png" alt="Minecraft" class="title-icon">
+                    Minecraft Server Manager
+                </h1>
+                <button class="btn back-btn" onclick="window.location.href='/'">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Servers
+                </button>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="create-container">
+                <h1>Create New Server</h1>
+                
+                <form id="serverForm">
+                    <div class="form-group">
+                        <label for="ip">Server IP Address:</label>
+                        <input type="text" id="ip" placeholder="Enter server IP (e.g., play.example.com)" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="port">Server Port:</label>
+                        <input type="number" id="port" placeholder="Enter port (e.g., 25565)" min="1" max="65535" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Server Type:</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="bedrock" name="type" value="bedrock">
+                                <label for="bedrock">Bedrock Edition</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="java" name="type" value="java" checked>
+                                <label for="java">Java Edition</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Java Version Selector -->
+                    <div class="form-group version-selector active" id="javaVersions">
+                        <label for="javaVersion">Java Edition Version:</label>
+                        <select id="javaVersion" required>
+                            <option value="">Select Java version</option>
+                            <option value="1.20.4">1.20.4</option>
+                            <option value="1.20.1">1.20.1</option>
+                            <option value="1.19.4">1.19.4</option>
+                            <option value="1.18.2">1.18.2</option>
+                            <option value="1.17.1">1.17.1</option>
+                            <option value="1.16.5">1.16.5</option>
+                            <option value="1.15.2">1.15.2</option>
+                            <option value="1.14.4">1.14.4</option>
+                            <option value="1.13.2">1.13.2</option>
+                            <option value="1.13.2">1.12.2</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Bedrock Version Selector -->
+                    <div class="form-group version-selector" id="bedrockVersions">
+                        <label for="bedrockVersion">Bedrock Edition Version:</label>
+                        <select id="bedrockVersion" required disabled>
+                            <option value="">Select Bedrock version</option>
+                            <option value="1.20.15">1.20.15</option>
+                            <option value="1.19.83">1.19.83</option>
+                            <option value="1.18.12">1.18.12</option>
+                            <option value="1.17.40">1.17.40</option>
+                            <option value="1.17.11">1.17.11</option>
+                            <option value="1.16.221">1.16.221</option>
+                            <option value="1.15.0">1.15.0</option>
+                            <option value="1.14.60">1.14.60</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn submit-btn">Create Server</button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Minecraft Server Manager v1.0 &copy; 2023</p>
+        </footer>
+    </div>
+
+<script>
+    // Redirect to login if not authenticated
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/auth/login.html';
+            return;
+        }
+
+        // Verify token with server
+        try {
+            const verify = await fetch('/api/auth/verify', { headers: { 'Authorization': `Bearer ${token}` } });
+            if (!verify.ok) {
+                localStorage.removeItem('token');
+                window.location.href = '/auth/login.html';
+            }
+        } catch (e) {
+            localStorage.removeItem('token');
+            window.location.href = '/auth/login.html';
+        }
+    });
+
+    // DOM elements
+    const serverForm = document.getElementById('serverForm');
+    const portInput = document.getElementById('port');
+    const typeRadios = document.querySelectorAll('input[name="type"]');
+    const javaVersions = document.getElementById('javaVersions');
+    const bedrockVersions = document.getElementById('bedrockVersions');
+    const javaVersionSelect = document.getElementById('javaVersion');
+    const bedrockVersionSelect = document.getElementById('bedrockVersion');
+    const submitBtn = serverForm.querySelector('button[type="submit"]');
+
+    // Toggle version selectors based on server type
+    typeRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            const type = e.target.value;
+            
+            // Reset both selectors
+            javaVersions.classList.remove('active');
+            bedrockVersions.classList.remove('active');
+            javaVersionSelect.required = false;
+            bedrockVersionSelect.required = false;
+            javaVersionSelect.disabled = true;
+            bedrockVersionSelect.disabled = true;
+
+            // Activate the selected type
+            if (type === 'java') {
+                javaVersions.classList.add('active');
+                javaVersionSelect.required = true;
+                javaVersionSelect.disabled = false;
+            } else {
+                bedrockVersions.classList.add('active');
+                bedrockVersionSelect.required = true;
+                bedrockVersionSelect.disabled = false;
+            }
+        });
+    });
+
+    // Form submission handler
+    serverForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner"></span> Creating...';
+
+        // Check authentication
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Please login first');
+            window.location.href = '/auth/login.html';
+            return;
+        }
+
+        // Get form data
+        const serverType = document.querySelector('input[name="type"]:checked').value;
+        const formData = {
+            ip: document.getElementById('ip').value.trim(),
+            port: parseInt(document.getElementById('port').value),
+            version: serverType === 'java' 
+                ? javaVersionSelect.value 
+                : bedrockVersionSelect.value,
+            type: serverType
+        };
+
+        // Validate form
+        if (!validateForm(formData)) {
+            resetSubmitButton();
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/projects', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Failed to create server');
+            }
+
+            if (result.success) {
+                showSuccessMessage('Server created successfully!');
+                setTimeout(() => window.location.href = '/', 1500);
+            } else {
+                throw new Error(result.error || 'Unknown error occurred');
+            }
+        } catch (error) {
+            console.error('Server creation error:', error);
+            showErrorMessage(error.message);
+            resetSubmitButton();
+        }
+    });
+
+    // Port input validation
+    portInput.addEventListener('input', (e) => {
+        let value = parseInt(e.target.value) || 0;
+        if (value < 1) value = 1;
+        if (value > 65535) value = 65535;
+        e.target.value = value;
+    });
+
+    // Helper functions
+    function validateForm(data) {
+        if (!data.ip || !data.port || !data.version || !data.type) {
+            showErrorMessage('Please fill all required fields');
+            return false;
+        }
+
+        if (isNaN(data.port) || data.port < 1 || data.port > 65535) {
+            showErrorMessage('Port must be between 1 and 65535');
+            return false;
+        }
+
+        return true;
+    }
+
+    function showSuccessMessage(message) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert success';
+        alertDiv.textContent = message;
+        serverForm.prepend(alertDiv);
+        setTimeout(() => alertDiv.remove(), 3000);
+    }
+
+    function showErrorMessage(message) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert error';
+        alertDiv.textContent = message;
+        serverForm.prepend(alertDiv);
+        setTimeout(() => alertDiv.remove(), 3000);
+    }
+
+    function resetSubmitButton() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Server';
+    }
+</script>
+</body>
+</html>

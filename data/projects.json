@@ -1,0 +1,173 @@
+{
+  "project_1767437007834": {
+    "host": "Katta-server-go.aternos.me",
+    "port": 61450,
+    "version": "1.17.40",
+    "type": "bedrock",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "MultiMax",
+    "createdAt": "2026-01-03T10:43:27.846Z",
+    "startedAt": "2026-01-03T14:35:16.316Z",
+    "stoppedAt": "2026-01-03T14:36:09.452Z"
+  },
+  "project_1767439572065": {
+    "host": "Katta-server-go.aternos.me",
+    "port": 61450,
+    "version": "1.17.40",
+    "type": "bedrock",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "running",
+    "owner": "MultiMax",
+    "createdAt": "2026-01-03T11:26:12.066Z",
+    "startedAt": "2026-01-03T11:26:15.962Z"
+  },
+  "project_1767448544224": {
+    "host": "127.0.0.1",
+    "port": 25565,
+    "version": "1.16.5",
+    "type": "java",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "test_1767448544070",
+    "createdAt": "2026-01-03T13:55:44.225Z"
+  },
+  "project_1767448572134": {
+    "host": "127.0.0.1",
+    "port": 25565,
+    "version": "1.16.5",
+    "type": "java",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "testglobal1767448571986",
+    "createdAt": "2026-01-03T13:56:12.134Z"
+  },
+  "project_1767448789891": {
+    "host": "127.0.0.1",
+    "port": 25565,
+    "version": "1.16.5",
+    "type": "java",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "testglb1767448789715",
+    "createdAt": "2026-01-03T13:59:49.892Z"
+  },
+  "project_1767449124525": {
+    "host": "127.0.0.1",
+    "port": 25565,
+    "version": "1.16.5",
+    "type": "java",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "test_1767449124340",
+    "createdAt": "2026-01-03T14:05:24.525Z"
+  },
+  "project_1767449155858": {
+    "host": "127.0.0.1",
+    "port": 25565,
+    "version": "1.16.5",
+    "type": "java",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "httpuser",
+    "createdAt": "2026-01-03T14:05:55.858Z"
+  },
+  "project_1767449449789": {
+    "host": "127.0.0.1",
+    "port": 25565,
+    "version": "1.16.5",
+    "type": "java",
+    "movementInterval": 5000,
+    "reconnectHours": 2,
+    "usernameFile": "usernames.txt",
+    "actions": [
+      "jump",
+      "moveForward",
+      "moveBackward",
+      "strafeLeft",
+      "strafeRight",
+      "lookAround",
+      "attackMobs"
+    ],
+    "status": "stopped",
+    "owner": "test_1767449449638",
+    "createdAt": "2026-01-03T14:10:49.789Z"
+  }
+}

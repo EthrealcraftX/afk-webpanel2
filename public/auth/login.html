@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Minecraft Server Manager</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .auth-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .auth-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .auth-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .auth-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .auth-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <main class="app-main">
+            <div class="auth-container">
+                <h1 class="auth-title">Login</h1>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Login</button>
+                    <a href="signup.html" class="auth-link">Don't have an account? Sign up</a>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+////public/auth/login.js
+
+        async function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+         const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            localStorage.setItem('token', data.token); // Tokenni saqlash
+            window.location.href = '/'; // Asosiy sahifaga yo'naltirish
+        } else {
+            alert(data.error || 'Login failed');
+        }
+        }
+
+        // Formni ulash
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await login();
+    });
+
+    </script>
+</body>
+</html>
