@@ -83,7 +83,3 @@ npm start
 
 ## Litsenziya
 - ISC (package.json ga mos)
-
----
-
-Agar xohlasangiz, inglizcha README versiyasini ham qo‘shib beraman yoki README mazmunini qisqartirib, loyiha sahifasiga mos rasmiy tavsif yozib bera olaman.
